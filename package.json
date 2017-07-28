@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "name": "alias-quokka-plugin",
+  "description": "Quokka plugin to provide module import aliases",
+  "keywords": ["alias-quokka-plugin", "typed", "flow"],
+  "main": "src/main",
+  "author": "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)",
+  "repository": "https://github.com/Gozala/alias-quokka-plugin",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^0.14.0",
+    "lint-staged": "^4.0.0",
+    "prettier": "^1.4.4"
+  },
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": ["prettier --parser flow --no-semi --write", "git add"]
+  }
+}
