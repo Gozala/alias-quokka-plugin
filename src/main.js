@@ -22,7 +22,7 @@ function resolvePath (src, path) {
   if (fs.existsSync(absPath)) {
     return absPath
   }
-  throw new Error('Unable to resolve module "' +src+ '" via aliased path "' + path + '"')
+  throw new Error('Cannot resolve module "' +src+ '" via aliased path "' + path + '"')
 }
 
 exports.before = config => {
