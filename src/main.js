@@ -5,14 +5,14 @@ const Path = require('path')
 const { _load, _findPath, Module } = require('module')
 
 function resolveAlias (aliases, src) {
-  let key, path
-  for (key in aliases) {
-    path = aliases[key]
-    if (src.indexOf(key) === 0) {
-      return src.replace(key, path)
-    }
-  }
-  return null
+  const key = Object
+    .keys(aliases)
+    .sort()
+    .reverse()
+    .find(key => src.indexOf(key) === 0)
+  return key
+    ? src.replace(key, aliases[key])
+    : undefined
 }
 
 function resolvePath (src, path) {
