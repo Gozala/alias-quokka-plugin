@@ -1,13 +1,13 @@
 "use strict"
 
 const { _load, Module } = require("module")
+const { inspect } = require("./utils")
 const {
   loadAliases,
   optimiseAliases,
   getAlias,
   resolvePath
 } = require("./helpers")
-const { inspect } = require("./utils")
 
 exports.before = config => {
   const settings = config.alias || {}

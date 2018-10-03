@@ -94,10 +94,9 @@ function resolvePath(target, alias, paths) {
   }
 
   throw new Error(
-    'Cannot resolve aliased module "' +
-      target +
-      '" on alias path(s) ' +
-      paths.join(", ")
+    `Cannot resolve aliased module ${target}" on configured path(s) ${paths.join(
+      ", "
+    )}`
   )
 }
 
