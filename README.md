@@ -11,6 +11,23 @@ Alias Quokka Plugin is a [Quokka][] plugin for providing module import aliases.
 Including the plugin and configuration in your JavaScript projects provides a way to define module aliases relative to the project root, and have Quokka find and run files that use those aliases.
 
 
+
+## Install
+
+Install the plugin as a dev dependency for your package:
+
+#### Yarn
+
+    yarn add --save --dev alias-quokka-plugin
+
+
+#### NPM
+
+    npm install --save-dev alias-quokka-plugin
+
+Or install it into [global quokka directory][] as regular dependency.
+
+
 ## Setup
 
 There are two ways to [configure][quokka-settings] the plugin via the `alias` key:
@@ -119,22 +136,25 @@ Quokka #1 (node: v8.11.1, TypeScript: v3.1.1, plugins: alias-quokka-plugin)
 }
 ```
 
-## Install
+## Limitations
 
-You can install the plugin as a dev dependency for your package:
+There are a few cases where the Quokka plugin won't run as expected; we've tried to document them here.
 
-#### Yarn
+#### PhpStorm
 
-    yarn add --save --dev alias-quokka-plugin
+Sometimes, the plugin fails load when running scratch files. We currently don't know why this is. The workaround is to save the file first, or use a different editor, perhaps WebStorm.
 
+- https://github.com/wallabyjs/quokka/issues/262#event-1880708069
 
-#### NPM
+#### VS Code
 
-    npm install --save-dev alias-quokka-plugin
+The following quote directly from the Quokka team:
 
-Or install it into [global quokka directory][] as regular dependency.
+> We're aware that unsaved scratch files don't work in VSCode, this is a limitation of the Quokka plugin for VSCode. This is because the file doesn't have a physical location to refer to your existing project like they do in IntelliJ IDEs.
+>
+> Sometimes VSCode can get confused when you have multiple folders in the same workspace. In this case, Quokka allows you to select your workspace folder for scratch files using the Quokka.js: Select Workspace Folder feature.
 
-
+We have had mixed results getting this to work.
 
 
 [travis.icon]: https://travis-ci.org/Gozala/alias-quokka-plugin.svg?branch=master
