@@ -1,5 +1,6 @@
 lib
 dist
+node_modules
 **/*.js
 **/*.flow
 !src/**/*.js

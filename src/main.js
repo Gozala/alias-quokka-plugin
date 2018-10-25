@@ -1,16 +1,29 @@
 "use strict"
 
-const Path = require("path")
 const { _load, Module } = require("module")
+const { inspect } = require("./utils")
+const {
+  loadAliases,
+  optimiseAliases,
+  getAlias,
+  resolvePath
+} = require("./helpers")
 
 exports.before = config => {
-  const root = Path.resolve(".")
-  Module._load = (path, ...rest) => {
-    const alias = config.alias && config.alias[path]
-    if (alias) {
-      return _load(Path.join(root, alias), ...rest)
-    } else {
-      return _load(path, ...rest)
-    }
+  const settings = config.alias || {}
+
+  let aliases = settings.import
+    ? loadAliases(settings.import.file, settings.import.node)
+    : optimiseAliases(settings.aliases || {})
+
+  if (settings.debug) {
+    inspect("aliases", aliases)
+  }
+
+  Module._load = function(target, ...rest) {
+    const alias = getAlias(aliases, target)
+    return alias
+      ? _load(resolvePath(target, alias.id, alias.paths), ...rest)
+      : _load(target, ...rest)
   }
 }
